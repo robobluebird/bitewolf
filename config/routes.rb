@@ -1,7 +1,24 @@
 Bitewolf::Application.routes.draw do
-  root :to => "home#index"
+  root :to => "users#show"
 
   devise_for :users
+
+  resources :users
+  resources :invitations do
+    member do
+      get 'accept'
+    end
+  end
+
+  resources :groups do
+    resources :lunches do
+      resources :locations do
+        member do
+          get 'vote'
+        end
+      end
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,22 @@
+= javascript_include_tag "jquery.ui.timepicker.js"
+= stylesheet_link_tag "jquery-ui"
+
+%h1 New lunch
+= form_for([:group, @lunch]) do |l|
+  %div
+    = l.label :day
+    %br/
+    = l.text_field :day
+  %div
+    = l.label :time
+    %br/
+    = l.text_field :time
+  %div
+    = l.label :restaurant
+    %br/
+    = text_field_tag 'restaurant'
+  %div
+    = l.label :style
+    %br/
+    = select_tag('style', options_for_select([["take out", "take_out"], ["eat in", "eat_in"]]), { :include_blank => true })
+  %div= l.submit "Create"

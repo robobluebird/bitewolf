@@ -1,0 +1,20 @@
+%h1= @user.username
+%h2 groups
+%ul
+  - @user.groups.each do |g|
+    %li
+      = link_to g.name, group_path(g.id)
+      = " - "
+      = g.description
+      = " - "
+      = link_to "new lunch", new_group_lunch_path(g.id)
+%h2 invitations
+%ul
+  - @invites.each do |i|
+    %li
+      = i.group.name + " "
+      = link_to "accept", accept_invitation_path(i.id)
+      = "/"
+      = link_to "ignore", invitation_path(i.id), :confirm => "are you sure you want to ignore?", :method => :delete
+%h2 actions
+= link_to 'sign out', destroy_user_session_path, :method => :delete

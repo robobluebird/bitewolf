@@ -1,0 +1,14 @@
+%h1= "Invite someone"
+= form_for(@invitation) do |i|
+  %div
+    = i.label :invitee_name
+    %br/
+    = i.text_field :name
+  %div
+    = i.label :invitee_email
+    %br/
+    = i.text_field :email
+  %div
+    = i.label :invite_to_group
+    = select_tag 'group_id', options_for_select(current_user.groups.collect{|u| [u.name, u.id]})
+  %div= i.submit "Send"

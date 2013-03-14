@@ -1,0 +1,49 @@
+%h1= "food @ " + @lunch.time + " " + @lunch.day
+= form_for([@group, @lunch], :method => :put) do |f|
+  %div
+    = f.label :time
+    %br/
+    = f.text_field :time, :value => @lunch.time
+    %span= @lunch.time_message
+  %div
+    = f.label :time_message
+    %br/
+    = f.text_field :time_message
+  %div= f.submit "Update"
+%br/
+= link_to "suggest a different spot", new_group_lunch_location_path(@group.id, @lunch.id)
+-# - if @lunch.tallied?
+-#   %h2 complete!
+-#   - if @lunch.chosen_by == :vote
+-#     %h3 chosen by majority vote
+-#   - else
+-#     %h3 chosen by random draw
+-#     %p
+-#       = "There seemed to be a tie, so bitewolf made an executive decision."
+%ul
+  - @lunch.locations.each do |o|
+    - if o.id.to_s == @lunch.chosen_location_id
+      %div{:style => "display:inline-block;border:5px solid green;"}
+        %li
+          = o.restaurant + " - " # + o.style.gsub("_", " ")
+          = link_to "▲", vote_group_lunch_location_path(@group.id, @lunch.id, o.id, :vote => "up"), :class => "voteable"
+          %ul
+            %li
+              = "upvotes: " + o.upvotes.count.to_s
+            %li
+              = "downvotes: " + o.downvotes.count.to_s
+            %li
+              = "accepted? no"
+    - else
+      %div
+        %li
+          = o.restaurant + " - " # + o.style.gsub("_", " ")
+          = link_to "▲", vote_group_lunch_location_path(@group.id, @lunch.id, o.id, :vote => "up"), :class => "voteable"
+          %ul
+            %li
+              = "upvotes: " + o.upvotes.count.to_s
+            %li
+              = "downvotes: " + o.downvotes.count.to_s
+            %li
+              = "accepted? no"
+= link_to "back to groups", group_path(@group.id)

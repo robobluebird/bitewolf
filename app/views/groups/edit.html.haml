@@ -1,0 +1,11 @@
+%h2 Edit group
+= form_for(@group) do |g|
+  %div
+    = g.label :name
+    %br/
+    = g.text_field :name, :autofocus => true
+  %div
+    = g.label :description
+    %br/
+    = g.text_area :description
+  %div= g.submit "Update"

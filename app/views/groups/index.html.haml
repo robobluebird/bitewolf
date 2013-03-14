@@ -1,0 +1,17 @@
+%h1= current_user.username + "'s groups"
+= link_to "create a new group", new_group_path
+%br/
+= link_to "create a new group and lunch simultaneously", nil
+%ul
+  - @groups.each do |g|
+    %li
+      = link_to g.name, group_path(g.id)
+      %ul
+        %li
+          = "members: " + g.users.count.to_s
+        %li
+          = "lunches: " + g.lunches.count.to_s
+        %li
+          = link_to "edit", edit_group_path(g.id)
+        %li
+          = link_to "delete", group_path(g.id), :confirm => "are you sure you want to remove?", :method => :delete

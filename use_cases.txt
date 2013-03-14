@@ -1,0 +1,35 @@
+create a user (p1)
+
+create a user (p2)
+
+p1 adds lunch spot to account (f1)
+
+p2 adds lunch spot to account (f2)
+
+p1 creates group (g1)
+
+p1 invites p2 to g1
+
+p2 is invited to g1
+
+branch
+  p2 accepts invitation to g1
+    p1 is notified of p2's acceptance
+  p2 declines invitation to g1
+    p1 is notified of p2's declination
+
+p1 adds a lunch (l1)
+
+p1 is offered p1 and p2's lunch spots for choosing
+
+p1 can choose a lunch spot or select random
+
+p1 can set the time and date of the lunch
+
+p1 submits lunch
+
+p2 receives lunch notification
+
+branch
+  p2 upvotes
+  p2 downvotes

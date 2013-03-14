@@ -1,0 +1,33 @@
+%h1= @group.name
+%p= @group.description
+= link_to "invite someone to this group", new_invitation_path
+%br/
+= link_to "add a lunch", new_group_lunch_path(@group.id)
+%h2= "members (" + @group.users.count.to_s + ")"
+%ul
+  - @group.users.each do |u|
+    %li
+      = link_to u.username, user_path
+%h2 lunches
+%ul
+  - @group.lunches.each do |l|
+    %li
+      = link_to l.time + " " + l.day, group_lunch_path(@group.id, l.id)
+      = link_to "delete", group_lunch_path(@group.id, l.id), :confirm => "are you sure you want to remove?", :method => :delete
+      %ul
+        - l.locations.each do |o|
+          %li
+            = o.restaurant + " - " # + o.style.gsub("_", " ")
+            = link_to "▲", vote_group_lunch_location_path(@group.id, l.id, o.id, :vote => "up"), :class => "voteable"
+            = link_to "▼", vote_group_lunch_location_path(@group.id, l.id, o.id, :vote => "down"), :class => "voteable"
+            %ul
+              %li
+                = "upvotes: " + o.upvotes.count.to_s
+              %li
+                = "downvotes: " + o.downvotes.count.to_s
+              %li
+                - if o.upvotes.count > @group.users.count / 2
+                  = "accepted? yes"
+                - else
+                  = "accepted? no"
+= link_to "back to profile", user_path(current_user.id)
