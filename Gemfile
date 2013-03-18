@@ -11,7 +11,6 @@ gem 'haml'
 gem 'hpricot'
 gem 'ruby_parser'
 gem 'devise'
-gem 'voteable_mongo'
 
 
 group :test do
@@ -24,6 +23,7 @@ group :test do
 end
 
 group :development do
+  gem 'heroku', '<= 2.0.0'
   gem 'rspec-rails'
   gem 'haml-rails'
 end
