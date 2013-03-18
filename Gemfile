@@ -23,7 +23,6 @@ group :test do
 end
 
 group :development do
-  gem 'heroku', '<= 2.0.0'
   gem 'rspec-rails'
   gem 'haml-rails'
 end
