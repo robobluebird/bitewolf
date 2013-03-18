@@ -21,6 +21,7 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new(params[:invitation])
     @group = current_user.groups.find(params[:group_id])
 
+    #if @invitee = User.where().first
     if @invitee = User.where(:email => @invitation.email).first
       @invitation.user = @invitee
       @invitation.group = @group
